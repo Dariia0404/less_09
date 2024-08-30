@@ -30,23 +30,58 @@ let groupedSocial = Object.groupBy(social, (social) => {
 console.log("groupedSocial:",groupedSocial);
 */
 
+/*
+function groupBy(cb, currentValue, index, arr){
+let result = [];
 
-
-let electronics = [
-    { type: 'phone', name: 'Samsung' },
-    { type: 'computer', name: 'Acer' },
-    { type: 'TV', name: 'Sony' }
+for (let i = 1; i < arr.length; i++) {
+    result [i] = cb(arr[i], i, arr) 
+}
+return result;
+}
+const data = [
+    { type: 'food', name: 'Pizza' },
+    { type: 'drink', name: 'Coffee' },
+    { type: 'food', name: 'Hot Dog' }
   ];
-  let groupedElectronics = Object.groupBy(electronics, (electronics) => {
-    return electronics.name;
+  
+  const { food, drink } = Object.groupBy(data, item => item.type);
+  
+  console.log(food); 
+  console.log(drink);
+  */
+/*
+  function groupBy(arr,cb){
+    const result = [];
+
+    for (let i = 0; i < arr.legth; i++){
+        result[i] = cb(arr[i], i, arr);
+    }
+
+    return result;
+  }
+
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const newArray = groupBy(arr, (item) =>{
+    return item, 3;
   });
-  
-  console.log("groupedElectronics:", groupedElectronics); 
-  
 
- 
+  console.log("newArray:", newArray);
+ */
 
+  function groupBy(arr, cb) {
+    return arr.reduce((acc, item) => {
+        const key = cb(item);
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(item);
+        return acc;
+    }, {});
+}
 
-
-
+let data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let groupedData = groupBy(data, Math.floor);
+console.log(groupedData);
 
